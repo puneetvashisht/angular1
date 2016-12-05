@@ -10,7 +10,9 @@
   <script>
     $('#t1').keyup(function(){
         console.log($('#t1').val());
-        $('#welcome').html($('#t1').val())
+        var str = $('#t1').val();
+        var revStr = str.split('').reverse().join('');
+        $('#welcome').html(revStr)
     })  
   
   </script>
