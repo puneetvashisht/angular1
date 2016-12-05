@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Factory Stuff</title>
+</head>
+<body >
+   
+   <div ng-app="myApp">
+       
+       <div ng-controller="FirstCtrl">
+            <input type="text" ng-model="data.title"/>
+       </div>
+        <div ng-controller="SecondCtrl">
+            <input type="text" ng-model="data.title"/>
+        </div>
+       
+   </div>
+
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+  <script>
+      var app = angular.module('myApp', [])
+      
+      app.factory('CommonData', function(){
+          return {
+              title: 'Mr.'
+          }
+      })
+      
+      app.controller('FirstCtrl', function(CommonData, $scope){ 
+           $scope.data = CommonData;
+      })
+      
+      app.controller('SecondCtrl', function(CommonData, $scope){ 
+         $scope.data = CommonData;
+      })
+      
+     app.run(function($rootScope){
+        
+      })
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+</html>

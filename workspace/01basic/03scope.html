@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Scope Stuff</title>
+</head>
+<body >
+   
+   <div ng-app="myApp">
+       <input type="text" ng-model="obj.title"/> {{obj.title}}
+       <div ng-controller="FirstCtrl">
+        
+         <input type="text" ng-model="obj.title"/> 
+         <input type="text" ng-model="fName"/> 
+         <input type="text" ng-model="lName"/> 
+            
+            <div ng-controller="SecondCtrl">
+         
+            <input type="text" ng-model="obj.title"/> <input type="text" ng-model="fName"/> 
+            <input type="text" ng-model="lName"/> 
+           </div>
+      
+          
+       </div>
+        
+       
+   </div>
+
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+  <script>
+      var app = angular.module('myApp', [])
+      
+      app.controller('FirstCtrl', function($rootScope, $scope){ 
+          console.log($rootScope);
+          console.log($scope);
+          $scope.fName = 'Ravi'        
+      })
+      
+      app.controller('SecondCtrl', function($scope){ 
+          console.log($scope);
+          $scope.lName = 'Sharma'
+//          $scope.fName = 'Priya'
+//          $scope.fName = $scope.$parent.fName;
+      })
+      
+     app.run(function($rootScope){
+          $rootScope.obj = {title: "Mr."}
+          console.log('Module Created');
+      })
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+</html>

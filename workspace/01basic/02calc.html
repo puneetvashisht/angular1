@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Calc App</title>
+</head>
+<body>
+    <div ng-app="calcApp">
+       <div ng-controller="CalcCtrl">
+            <input type="number" ng-model="oper1"/>
+            <input type="number" ng-model="oper2"/>
+            <button ng-click="add()"> + </button>
+            <button ng-click="minus()"> - </button>
+            <hr>
+            Result is : {{result}}
+       </div>     
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+    
+    <script>
+        var app = angular.module('calcApp', []);
+        
+        app.controller('CalcCtrl', function($scope){
+            $scope.add = function(){
+                $scope.result = $scope.oper1 + $scope.oper2
+                console.log('add something')
+            }
+            $scope.minus = function(){
+                $scope.result = $scope.oper1 - $scope.oper2
+            }
+        })
+        
+    
+    </script>
+</body>
+</html>
