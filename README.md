@@ -1,3 +1,4 @@
+<h2> -- Coverage -- </h2>
 Basic JS
  - data types
  - functions (objects, return, pass as args)

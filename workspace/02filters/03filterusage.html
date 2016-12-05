@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>DOM Stuff</title>
+    <link rel=stylesheet  href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+   
+    <input type="text" ng-model="search.name" placeholder="Search By Name"/>
+    <input type="text" ng-model="search.role" placeholder="Search By Role"/>
+    <input type="text" ng-model="search.$" placeholder="Search All"/>
+    
+    <table>
+        <tr ng-repeat="employee in employees | filter:search">
+            <td>{{$index+1}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.role}}</td>
+        </tr>
+    </table>
+   
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+<script>
+var app = angular.module('myApp', []);  
+ 
+  
+app.controller('myCtrl', function($scope){
+    $scope.employees = [
+       {name:'Ravi', role:'SE'},
+       {name:'Priya', role:'IT'},
+       {name:'Amit', role:'Finance'},
+       {name:'Ravi', role:'Finance'},
+       {name:'Rahul', role:'HR'},
+    ]
+   
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+  
+</body>
+</html>

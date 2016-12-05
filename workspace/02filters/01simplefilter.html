@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>DOM Stuff</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div>{{today | date:'y:M:dd'}}</div>
+    <div>{{employees |filter:{name:"Ravi"} }}</div>
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+<script>
+var app = angular.module('myApp', []);  
+    
+app.controller('myCtrl', function($scope){
+    $scope.today = new Date();
+    $scope.employees = [
+       {name:'Ravi', role:'SE'},
+       {name:'Priya', role:'IT'},
+       {name:'Amit', role:'Finance'},
+       {name:'Ravi', role:'Finance'},
+       {name:'Rahul', role:'HR'},
+    ]
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+  
+</body>
+</html>

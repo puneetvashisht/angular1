@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>DOM Stuff</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div>{{message | lowercase | capitalized}}</div>
+   
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+<script>
+var app = angular.module('myApp', []);  
+ 
+app.filter('capitalized', function(){
+    return function(input){
+        console.log(input);
+        return input[0].toUpperCase() + input.slice(1);
+    }
+})    
+app.controller('myCtrl', function($scope){
+    $scope.message = 'fantastic SUNNy Day'
+   
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+  
+</body>
+</html>
