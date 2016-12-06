@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>First Directive</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-app="myApp">
+ <div ng-controller="AppCtrl">
+     <gp-badge text="Sent"></gp-badge>  
+     <gp-badge text="Inbox"></gp-badge>  
+ </div>
+   
+    
+    
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js">
+</script> 
+<script>
+    var app = angular.module('myApp', []);
+    
+    app.controller('AppCtrl', function($scope){
+        console.log($scope)
+        $scope.text = "Inbox";
+        $scope.count = 34;
+    })
+    
+    app.directive('gpBadge', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'partial/badge.html',
+            scope: {},
+            link: function(scope, element, attrs){
+                console.log(scope)
+                console.log(attrs.text)
+                console.log(element)
+                scope.text = attrs.text;
+                element.bind('click', function(){
+                    console.log('badge clicked')
+                    scope.count++;
+                     
+                    scope.$apply();
+                })
+            }
+        }
+    })
+</script>   
+</body>
+</html>

@@ -20,3 +20,7 @@ Filters
   - Existing (lowercase, uppercase, orderBy, limitTo)  - Custom (Capitalize) 
   - filter :filter
   - ngRepeat
+  
+Directives
+Http
+

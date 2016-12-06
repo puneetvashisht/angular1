@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>First Directive</title>
+    
+</head>
+<body ng-app="myApp">
+   <gp-link></gp-link>
+    <div>
+        <gp-link></gp-link>
+    </div>
+    
+    <div gp-link></div>
+    
+    <div class="gp-link"></div>
+    <p class="gp-link"></p>
+    
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js">
+</script> 
+<script>
+    var app = angular.module('myApp', []);
+    
+    app.directive('gpLink', function(){
+        return {
+            restrict: 'C',
+            template: '<a href="http://www.genpact.com">Genpact Link</a>',
+            replace: true
+        }
+    })
+</script>   
+</body>
+</html>
