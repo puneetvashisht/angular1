@@ -24,3 +24,8 @@ Filters
 Directives
 Http
 
+
+<h2>Setting proxy</h2>
+ - npm config set proxy http://genpactproxy.headstrong.com:3120 
+ - npm config set https-proxy http://genpactproxy.headstrong.com:3120
+
