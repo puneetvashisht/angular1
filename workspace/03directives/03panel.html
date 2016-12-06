@@ -13,25 +13,38 @@
 </style>
 </head>
 <body ng-app="myApp">
- <div>
-     <gp-panel></gp-panel>  
+ <div ng-controller="AppCtrl">
    
+   <input type="text" ng-model="search.content" placeholder="Search Content"/>
+   
+    <gp-panel ng-repeat="technology in technologies | filter:search" title="{{technology.title}}">{{technology.content}}</gp-panel>
  </div>
    
-    
-    
 <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js">
 </script> 
 <script>
     var app = angular.module('myApp', []);
+    
+    app.controller('AppCtrl', function($scope){
+        $scope.technologies = [
+            {title:'AngularJS', content: 'Framework by google. Angular 2 is the latest and follows a much better approach.'},
+            {title:'ReactJS', content:'Library by Facebook. Relies on virtual DOM. Good for performance and very easy to learn.'}
+            
+        ]
+        
+    })
 
     
     app.directive('gpPanel', function(){
         return {
             restrict: 'E',
             templateUrl: 'partial/panel.html',
-            link: function(scope, element){
+            scope: {
+                title: '@title'
+            },
+            link: function(scope, element, attrs){
+                //scope.title = attrs.title
                 element.bind('mouseover', function(){
                     element.addClass('mystyle');
                 })
@@ -39,7 +52,8 @@
                     element.removeClass('mystyle');
                 })
             },
-            replace: true
+            replace: true,
+            transclude: true
             
         }
     })
