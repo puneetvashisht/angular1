@@ -14,7 +14,7 @@
 </head>
 <body ng-app="myApp">
  <div ng-controller="AppCtrl">
-   
+   <button ng-click="loadData()">Load Technologies</button>
    <input type="text" ng-model="search.content" placeholder="Search Content"/>
    
     <gp-panel ng-repeat="technology in technologies | filter:search" title="{{technology.title}}">{{technology.content}}</gp-panel>
@@ -26,12 +26,15 @@
 <script>
     var app = angular.module('myApp', []);
     
-    app.controller('AppCtrl', function($scope){
-        $scope.technologies = [
-            {title:'AngularJS', content: 'Framework by google. Angular 2 is the latest and follows a much better approach.'},
-            {title:'ReactJS', content:'Library by Facebook. Relies on virtual DOM. Good for performance and very easy to learn.'}
-            
-        ]
+    app.controller('AppCtrl', function($scope,$http){
+        $scope.loadData = function() {
+                $http({
+                    url: '/dummy.json',
+                    method: 'GET'
+                }).success(function(data) {
+                    $scope.technologies = data;
+                })
+            }
         
     })
 
@@ -43,15 +46,29 @@
             scope: {
                 title: '@title'
             },
-            link: function(scope, element, attrs){
+            
+            compile: function(element, attrs){
+                console.log('In compile Attaching style...')
+                element.addClass('mystyle');
+                
+                var link = function(scope, element, attrs){
+                    
+                    console.log('for every instance')
+                }
+                return link
+            },
+            
+            /*link: function(scope, element, attrs){
                 //scope.title = attrs.title
-                element.bind('mouseover', function(){
-                    element.addClass('mystyle');
+                console.log('In link Attaching style...')
+                element.addClass('mystyle');
+                /*element.bind('mouseover', function(){
+                    
                 })
-                element.bind('mouseleave', function(){
+                /*element.bind('mouseleave', function(){
                     element.removeClass('mystyle');
                 })
-            },
+            }*/
             replace: true,
             transclude: true
             

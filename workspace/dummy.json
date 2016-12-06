@@ -1,0 +1,6 @@
+[
+            {"title":"AngularJS", "content": "Framework by google. Angular 2 is the latest and follows a much better approach."},
+            {"title":"ReactJS", "content":"Library by Facebook. Relies on virtual DOM. Good for performance and very easy to learn."},
+             {"title":"EmberJS", "content":"Library by Facebook. Relies on virtual DOM. Good for performance and very easy to learn."}
+            
+]
