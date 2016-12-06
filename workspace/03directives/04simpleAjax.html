@@ -21,7 +21,7 @@
         app.controller('AppCtrl', function($scope, $http) {
             $scope.loadData = function() {
                 $http({
-                    url: '/dummy.json',
+                    url: 'http://localhost:3000/employees',
                     method: 'GET'
                 }).success(function(data) {
                     $scope.technologies = data;
