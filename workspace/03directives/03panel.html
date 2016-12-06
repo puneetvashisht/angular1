@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>First Directive</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+  
+    .mystyle {
+        border: 1px solid red;
+    }
+    
+</style>
+</head>
+<body ng-app="myApp">
+ <div>
+     <gp-panel></gp-panel>  
+   
+ </div>
+   
+    
+    
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js">
+</script> 
+<script>
+    var app = angular.module('myApp', []);
+
+    
+    app.directive('gpPanel', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'partial/panel.html',
+            link: function(scope, element){
+                element.bind('mouseover', function(){
+                    element.addClass('mystyle');
+                })
+                element.bind('mouseleave', function(){
+                    element.removeClass('mystyle');
+                })
+            },
+            replace: true
+            
+        }
+    })
+</script>   
+</body>
+</html>
