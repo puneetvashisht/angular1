@@ -1,4 +1,12 @@
 <h2>Home Page</h2>
 {{today | date:'medium'}}
 
+<h3>Rating selected is : {{rate}}</h3>
+
+<h4>Default</h4>
+    <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+    
+    
+    <br>
+
 <button ng-click="gotoAboutUs()">Go to about us</button>

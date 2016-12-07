@@ -1,6 +1,8 @@
 <html>
 <head>
     <title></title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body ng-app="myApp">
     <div>
@@ -13,16 +15,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js">
     </script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"></script>
+   
+<script src="../libs/ui-bootstrap-tpls-2.3.0.js"></script>   
     
     <script>
-    var app = angular.module('myApp', ['ngRoute']);
+    var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
         
     app.controller('AppCtrl', function($scope, $location){
+        
+        $scope.rate = 7;
+  $scope.max = 10;
+  $scope.isReadonly = false;
+
+  $scope.hoveringOver = function(value) {
+    $scope.overStar = value;
+    $scope.percent = 100 * (value / $scope.max);
+  };
+
+        
+        
         $scope.gotoAboutUs = function(){
             console.log('Controller function clicked')
             $location.path('/aboutus');
         }
         $scope.today = new Date();
+    })
+    
+    app.controller('DetailCtrl', function($scope,$routeParams){
+        console.log($routeParams.id)
+        $scope.id = $routeParams.id
     })
         
     app.config(function($routeProvider){
@@ -31,6 +52,9 @@
             controller: 'AppCtrl'
         }).when('/aboutus', {
             templateUrl: 'partials/aboutus.html'
+        }).when('/detail/:id', {
+            templateUrl: 'partials/detail.html',
+            controller: 'DetailCtrl'
         }).otherwise({
             redirectTo: '/'
         })
