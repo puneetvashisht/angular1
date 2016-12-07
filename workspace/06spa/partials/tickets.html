@@ -1,8 +1,18 @@
 <h2>Tickets Page</h2>
 <hr>
+<input type="search" ng-model="search.$" placeholder="Search All"/>
 
-<div ng-repeat="ticket in tickets">
-    <gp-ticket summary="{{ticket.summary}}" description = "{{ticket.description}}" severity="{{ticket.severity}}"></gp-ticket>
+
+{{title}}
+
+
+<select>
+    <option>Summary</option>
+    <option>Description</option>
+</select>
+
+<div ng-repeat="ticket in tickets | filter:search | orderBy:'-summary'">
+    <gp-ticket summary="{{ticket.summary}}" description = "{{ticket.description}}" severity="{{ticket.severity}}" id="{{$index}}"></gp-ticket>
 </div>
 
 

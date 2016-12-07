@@ -16,9 +16,6 @@
 <body ng-app="myApp">
     <div>
         <ng-view></ng-view>
-        
-        <hr>
-<a href="#/">Home</a> | <a href="#/aboutus">About Us</a>
     </div>
     
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js">
@@ -47,9 +44,20 @@
         }
     })
     
-    app.controller('DetailCtrl', function($scope,$routeParams){
+    app.factory('TicketData', function(){
+        return {
+            tickets: []
+        }
+    })
+    
+    app.controller('DetailCtrl', function($scope,$routeParams,TicketData){
+        //$scope.tickets = TicketData.tickets;
+        
+        //$scope.id = $routeParams.id
+        
         console.log($routeParams.id)
-        $scope.id = $routeParams.id
+        
+        $scope. currentTicket = TicketData.tickets[$routeParams.id]
     })
     
     app.directive('gpTicket', function(){
@@ -58,7 +66,8 @@
             templateUrl: 'tags/ticket.html',
             scope: {
               summary: '@summary',
-              description: '@description'
+              description: '@description',
+              id: '@id'    
             },
             link: function(scope,element, attr){
                 console.log(attr.severity);
@@ -80,14 +89,34 @@
         }
     })
     
-    app.controller('TicketsCtrl', function($scope, $http){
-        
+    app.controller('TicketsCtrl', function($scope, $http,TicketData){
            $http({
                 url: 'http://localhost:3000/tickets',
                 method: 'GET',
             }).success(function(data){
                 $scope.tickets = data;
+               TicketData.tickets = data;
             })              
+    })
+    
+    app.controller('AddTicketCtrl', function($scope, $http){
+        
+        $scope.addTicket = function(){
+            $http({
+                url: 'http://localhost:3000/ticket',
+                method: 'POST',
+               data : $scope.ticket
+            }).success(function(data){
+               if(data.success){
+                   $scope.message = "Ticket added"
+               }
+               else{
+                   $scope.message = "Failed operation"
+               }
+            
+            })  
+        }
+                       
     })
 
         
@@ -101,6 +130,9 @@
         }).when('/detail/:id', {
             templateUrl: 'partials/detail.html',
             controller: 'DetailCtrl'
+        }).when('/addticket', {
+            templateUrl: 'partials/addticket.html',
+            controller: 'AddTicketCtrl'
         }).otherwise({
             redirectTo: '/home'
         })

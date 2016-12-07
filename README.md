@@ -42,6 +42,25 @@ NodeJS
  - Npm (express, cors, body-parser) : Server responds to Http GET/POST 
  - Utility (Postman)
  - create package.json (npm init)
+ 
+ 
+ 
+ Project Sequence:
+ 1. On landling page do Ajax to fetch tickets data
+ 2. Display Tickets
+ 3. Create a Ticket directive using bootstrap
+ 4. Display tickets using directive
+ 
+ var tickets = [{
+ id: 345436,
+ summary: 'Internet not working',
+ status: 'Open/Closed'
+ severity: '3',
+ description: 'Internet not working because some issue with proxy'
+ }]
+ 
+ 
+ 
 
 <h2>Setting proxy</h2>
  - npm config set proxy http://genpactproxy.headstrong.com:3120 

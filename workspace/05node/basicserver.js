@@ -25,6 +25,14 @@ app.get('/tickets', function(req, res){
     res.json(tickets);
 })
 
+app.post('/ticket', function(req,res){
+    var ticket = req.body;
+    console.log(ticket)
+    tickets.push(ticket);
+    console.log(tickets);
+    res.json({succes:true});
+})
+
 app.post('/auth', function(req,res){
     console.log(req.body);
     var respStr;
