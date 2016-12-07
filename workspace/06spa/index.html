@@ -2,7 +2,16 @@
 <head>
     <title></title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
 
+    .warning {
+        background-color: yellow;
+    }
+    .error {
+        background-color: orangered;
+    }
+    
+</style>
 </head>
 <body ng-app="myApp">
     <div>
@@ -45,10 +54,24 @@
     
     app.directive('gpTicket', function(){
         return {
+            replace: true,
             templateUrl: 'tags/ticket.html',
             scope: {
               summary: '@summary',
               description: '@description'
+            },
+            link: function(scope,element, attr){
+                console.log(attr.severity);
+                if(attr.severity == 3){
+                    var el = element.children('#summary')
+                    el.addClass('warning');
+                    //element.addClass('warning');
+                }
+                if(attr.severity == 5){
+                    
+                    var el = element.children('#summary')
+                    el.addClass('error');
+                }
             }
         }
     })
