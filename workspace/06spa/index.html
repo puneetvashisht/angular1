@@ -62,16 +62,20 @@
             },
             link: function(scope,element, attr){
                 console.log(attr.severity);
-                if(attr.severity == 3){
-                    var el = element.children('#summary')
-                    el.addClass('warning');
-                    //element.addClass('warning');
+                var myclass = this.chooseClass(attr.severity)
+                var el = element.children()
+                el.addClass(myclass);
+            },
+            
+            chooseClass: function(severity){
+                var myclass = 'warning';
+                if(severity == 3){
+                    myclass = 'warning'
                 }
-                if(attr.severity == 5){
-                    
-                    var el = element.children('#summary')
-                    el.addClass('error');
+                else if(severity = 5){
+                    myclass = 'error'
                 }
+                return myclass;
             }
         }
     })
