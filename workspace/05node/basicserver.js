@@ -18,6 +18,13 @@ app.get('/', function (req, res) {
 })
 
 
+var tickets = [{"id":345436,"summary":"Internet not working","status":"Open","severity":"3","description":"Internet not working because some issue with proxy"},{"id":345437,"summary":"Monitor not working","status":"Open","severity":"5","description":"Flickering on screen."}];
+
+
+app.get('/tickets', function(req, res){
+    res.json(tickets);
+})
+
 app.post('/auth', function(req,res){
     console.log(req.body);
     var respStr;

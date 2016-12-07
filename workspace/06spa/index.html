@@ -21,42 +21,61 @@
     <script>
     var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
         
-    app.controller('AppCtrl', function($scope, $location){
-        
-        $scope.rate = 7;
-  $scope.max = 10;
-  $scope.isReadonly = false;
-
-  $scope.hoveringOver = function(value) {
-    $scope.overStar = value;
-    $scope.percent = 100 * (value / $scope.max);
-  };
-
-        
-        
-        $scope.gotoAboutUs = function(){
-            console.log('Controller function clicked')
-            $location.path('/aboutus');
+    app.controller('LoginCtrl', function($scope, $location, $http){
+        $scope.login = function(){
+            $http({
+                url: 'http://localhost:3000/auth',
+                method: 'POST',
+                data: $scope.user
+            }).success(function(data){
+                if(data.success){
+                    $location.path('/tickets')
+                }
+                else{
+                    $scope.errorMessage = "Invalid User/Password!!"
+                }
+            })
         }
-        $scope.today = new Date();
     })
     
     app.controller('DetailCtrl', function($scope,$routeParams){
         console.log($routeParams.id)
         $scope.id = $routeParams.id
     })
+    
+    app.directive('gpTicket', function(){
+        return {
+            templateUrl: 'tags/ticket.html',
+            scope: {
+              summary: '@summary',
+              description: '@description'
+            }
+        }
+    })
+    
+    app.controller('TicketsCtrl', function($scope, $http){
+        
+           $http({
+                url: 'http://localhost:3000/tickets',
+                method: 'GET',
+            }).success(function(data){
+                $scope.tickets = data;
+            })              
+    })
+
         
     app.config(function($routeProvider){
-        $routeProvider.when('/', {
-            templateUrl: 'partials/home.html',
-            controller: 'AppCtrl'
-        }).when('/aboutus', {
-            templateUrl: 'partials/aboutus.html'
+        $routeProvider.when('/home', {
+            templateUrl: 'partials/login.html',
+            controller: 'LoginCtrl'
+        }).when('/tickets', {
+            templateUrl: 'partials/tickets.html',
+            controller: 'TicketsCtrl'
         }).when('/detail/:id', {
             templateUrl: 'partials/detail.html',
             controller: 'DetailCtrl'
         }).otherwise({
-            redirectTo: '/'
+            redirectTo: '/home'
         })
     }) 
     
