@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="myApp">
+    <div>
+        <ng-view></ng-view>
+        
+        <hr>
+<a href="#/">Home</a> | <a href="#/aboutus">About Us</a>
+    </div>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js">
+    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"></script>
+    
+    <script>
+    var app = angular.module('myApp', ['ngRoute']);
+        
+    app.controller('AppCtrl', function($scope, $location){
+        $scope.gotoAboutUs = function(){
+            console.log('Controller function clicked')
+            $location.path('/aboutus');
+        }
+        $scope.today = new Date();
+    })
+        
+    app.config(function($routeProvider){
+        $routeProvider.when('/', {
+            templateUrl: 'partials/home.html',
+            controller: 'AppCtrl'
+        }).when('/aboutus', {
+            templateUrl: 'partials/aboutus.html'
+        }).otherwise({
+            redirectTo: '/'
+        })
+    }) 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    </script>    
+</body>
+</html>
