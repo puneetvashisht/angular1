@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>Another App</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        {{data.message}}
+    </div>
+       
+    <div ng-app="otherApp" ng-controller="myCtrl1">
+        {{data.message}}
+    </div>
+    
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>  
+    
+    <script>
+        var app = angular.module('myApp', ['otherApp'])
+        app.controller('myCtrl', function($scope, CommonData){
+            $scope.data = CommonData
+        })
+        
+        
+        
+        var otherApp = angular.module('otherApp', [])
+        
+         otherApp.factory('CommonData', function(){
+            return {
+                message:'From other module'
+            }
+        })
+        
+        otherApp.controller('myCtrl1', function($scope, CommonData){
+            $scope.data = CommonData
+        })
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    </script>
+</body>
+</html>

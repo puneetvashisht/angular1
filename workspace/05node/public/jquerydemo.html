@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>DOM Stuff</title>
+</head>
+<body>
+    <input type="text" id="t1"/>
+    <div id="welcome"></div>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script>
+    $('#t1').keyup(function(){
+        console.log($('#t1').val());
+        var str = $('#t1').val();
+        var revStr = str.split('').reverse().join('');
+        $('#welcome').html(revStr)
+    })  
+  
+  </script>
+</body>
+</html>

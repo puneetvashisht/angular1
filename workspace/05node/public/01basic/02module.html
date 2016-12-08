@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>DOM Stuff</title>
+</head>
+<body >
+   
+   <div ng-app="myApp">
+       <div ng-controller="AppCtrl">
+           {{message}}
+           <input type="text" ng-model="message" ng-blur="revMessage()"/>
+             <br>
+           Reversed Message is: {{revStr}}
+       </div>
+   </div>
+    
+    
+    https://github.com/puneetvashisht/angular1
+    <script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  
+  <script>
+      var app = angular.module('myApp', [])
+      
+      app.controller('AppCtrl', function($scope){
+          $scope.message = "Welcome to AngularJS"
+
+          $scope.revMessage = function(){
+             $scope.revStr=  $scope.message.split('').reverse().join('');
+          } 
+      })
+      
+      /*app.run(function($rootScope){
+          console.log('Module Created');
+          $rootScope.data = 3435
+      })*/
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+</html>

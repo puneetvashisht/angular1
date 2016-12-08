@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-App>
+    <head>
+        <style type="text/css">
+    .css-form input.ng-invalid.ng-dirty {
+      background-color: #FA787E;
+    }
+    .css-form input.ng-valid.ng-dirty {
+      background-color: #78FA89;
+    }
+  </style>
+ 
+  <script>
+    function Controller($scope) {
+      $scope.master = {};
+ 
+      $scope.update = function(user) {
+        //$scope.master = angular.copy(user);
+      };
+ 
+      $scope.reset = function() {
+        //$scope.user = angular.copy($scope.master);
+      };
+ 
+      $scope.reset();
+    }
+  </script>
+        <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+        <title>Form Validate</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-controller="Controller">
+    <form name="myform" class="css-form">
+      Name:
+        <input name = "username" type="text" ng-model="user.name" required /><br />
+      Length: <input type="text"  ng-model="user.lengt" ng-minlength= 5 ng-maxlength="10"/><br />
+      Pattern match: <input type="text" ng-model="user.patt" ng-pattern="/A-Z/" /><br />
+      E-Mail : <input type="email" ng-model="user.email" required /><br />
+      Number : <input type="number" ng-model="user.number" required /><br />
+      URL : <input type="url" ng-model="user.url"  /><br />
+      Gender: <input type="radio" ng-model="user.gender" value="male" />male
+      <input type="radio" ng-model="user.gender" value="female" />female<br />
+      <button ng-click="reset()">RESET</button>
+      <button ng-click="update(user)">SAVE</button> 
+      <br>
+      <br>
+      
+      See this : pristine : {{myform.username.$pristine}} <br>
+      Dirty :{{myform.username.$dirty}} <br>
+      Valid : {{myform.username.$valid}} <br>
+      Invalid : {{myform.username.$invalid}} <br>
+      
+      
+    </form>
+  </div>
+
+    </body>
+</html>
